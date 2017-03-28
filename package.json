@@ -1,0 +1,44 @@
+{
+  "name": "cuillerbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && ava",
+    "dist": "rimraf dist && webpack --colors",
+    "start": "npm run dist && node --expose-http2 dist/CuillerBot.js",
+    "dev": "webpack --config webpack.config.dev.js --watch --colors"
+  },
+  "author": "lockeid",
+  "license": "MIT",
+  "ava": {
+    "files": [
+      "**/tests/*.js"
+    ],
+    "source": [
+      "**/*.{js,jsx}",
+      "!dist/**/*"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "powerAssert": false
+  },
+  "dependencies": {
+    "@types/node": "^8.0.28",
+    "ava": "^0.18.2",
+    "awesome-typescript-loader": "^3.1.2",
+    "discord.js": "^11.2.1",
+    "http2": "^3.3.6",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "nodemon": "^1.12.0",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.0",
+    "typescript": "^2.5.0",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}
