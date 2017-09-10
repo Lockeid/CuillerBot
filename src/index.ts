@@ -1,15 +1,17 @@
 import { Client, TextChannel, Message } from 'discord.js';
 import { getCharacters } from './characters';
-import { loadQuotes, getRandomQuote } from './quoteManager';
+import QuoteManager from './quoteManager';
 const client = new Client();
 
+let quoteManager: QuoteManager;
+
 client.on('ready', () => {
-    loadQuotes();
+    quoteManager = new QuoteManager();
     console.log('Ready!');
 });
   
 client.on('message', (msg: Message) => {
-    if (msg.author.bot) return;
+    if (msg.author.bot || !quoteManager) return;
 
     if (msg.content.startsWith('!cuiller-commands')) {
         const chars = getCharacters();
@@ -18,7 +20,7 @@ client.on('message', (msg: Message) => {
     }
 
     if (msg.content.startsWith('!')) {
-        const quote = getRandomQuote(msg.content.slice(1));
+        const quote = quoteManager.getRandomQuote(msg.content.slice(1));
         if (quote) msg.channel.send(quote);
     }
 });
