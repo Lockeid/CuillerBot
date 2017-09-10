@@ -5,6 +5,11 @@ export enum Characters {
     PERCEVAL,
     GAUVAIN,
     BURGONDE,
+    MERLIN,
+    ARTHUR,
+    BOHORT,
+    MA,
+    KARADOC,
 };
 
 export const characterExists = (charName: string): boolean => charName.toUpperCase() in Characters;
