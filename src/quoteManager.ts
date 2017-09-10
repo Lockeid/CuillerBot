@@ -1,17 +1,16 @@
-import { Characters, characterExists } from './characters';
+import { Characters, characterExists, getCharacters } from './characters';
 
 const loadedQuotes: {[key: string]: Array<string>} = {};
 
 const jsonReq = require.context("../quotes", false, /^\.\/.*\.json$/);
 
 export const loadQuotes = () => {
-    Object.keys(Characters).forEach((charName: string) => {
-        if (!Number.isNaN(Number.parseInt(charName, 10))) return;
+    getCharacters().forEach((charName: string) => {
         try {
-            const charQuotes = jsonReq(`./${charName.toLowerCase()}.json`) as Array<string>;
+            const charQuotes = jsonReq(`./${charName}.json`) as Array<string>;
             loadedQuotes[charName] = charQuotes;
         } catch {
-            console.log(`Couldn't load file ${charName.toLowerCase()}.json`);
+            console.log(`Couldn't load file ${charName}.json`);
         }
     });
 }

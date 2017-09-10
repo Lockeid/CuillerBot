@@ -1,4 +1,5 @@
 import { Client, TextChannel, Message } from 'discord.js';
+import { getCharacters } from './characters';
 import { loadQuotes, getRandomQuote } from './quoteManager';
 const client = new Client();
 
@@ -9,6 +10,12 @@ client.on('ready', () => {
   
 client.on('message', (msg: Message) => {
     if (msg.author.bot) return;
+
+    if (msg.content.startsWith('!cuiller-commands')) {
+        const chars = getCharacters();
+        msg.channel.send(`\`${chars.map(char => `!${char}`)}\``)
+        return;
+    }
 
     if (msg.content.startsWith('!')) {
         const quote = getRandomQuote(msg.content.slice(1));
