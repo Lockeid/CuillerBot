@@ -5,15 +5,18 @@ const client = new Client();
 
 let quoteManager: QuoteManager;
 
+const helpCommand = '!cuiller-commands';
+
 client.on('ready', () => {
     quoteManager = new QuoteManager();
+    client.user.setGame(helpCommand);
     console.log('Ready!');
 });
   
 client.on('message', (msg: Message) => {
     if (msg.author.bot || !quoteManager) return;
 
-    if (msg.content.startsWith('!cuiller-commands')) {
+    if (msg.content.startsWith(helpCommand)) {
         const chars = getCharacters();
         msg.channel.send(`\`${chars.map(char => `!${char}`)}\``)
         return;
