@@ -1,19 +1,18 @@
-import { Client, TextChannel } from 'discord.js';
+import { Client, TextChannel, Message } from 'discord.js';
+import { loadQuotes, getRandomQuote } from './quoteManager';
 const client = new Client();
 
-client.on('ready', () => console.log('Ready!'));
-
-client.on('message', (msg) => {
+client.on('ready', () => {
+    loadQuotes();
+    console.log('Ready!');
+});
+  
+client.on('message', (msg: Message) => {
     if (msg.author.bot) return;
 
-    if (msg.content.startsWith('!perceval')) {
-        msg.channel.send('C\'est pas faux');
-    }
-    if (msg.content.startsWith('!burgonde')) {
-        msg.channel.send('J\'aime les fruits au sirop');
-    }
-    if (msg.content.startsWith('!kadoc')) {
-        msg.channel.send('Elle est où la poulette ?');
+    if (msg.content.startsWith('!')) {
+        const quote = getRandomQuote(msg.content.slice(1));
+        if (quote) msg.channel.send(quote);
     }
 });
 
