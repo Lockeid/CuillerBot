@@ -13,6 +13,7 @@ export enum Characters {
     GUENIEVRE,
     VENEC,
     BLAISE,
+    YVAIN,
     AUTRES,
 };
 
