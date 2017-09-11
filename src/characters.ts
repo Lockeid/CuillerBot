@@ -15,6 +15,7 @@ export enum Characters {
     BLAISE,
     YVAIN,
     AUTRES,
+    DAGONET,
 };
 
 export const characterExists = (charName: string): boolean => charName.toUpperCase() in Characters;
