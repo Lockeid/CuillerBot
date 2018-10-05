@@ -3,3 +3,4 @@ dist
 temp
 .vscode
 *.log
+config.json

@@ -3,6 +3,8 @@ import { getCharacters } from './characters';
 import QuoteManager from './quoteManager';
 const client = new Client();
 
+declare var __PUBLIC_KEY__: string;
+
 let quoteManager: QuoteManager;
 
 const helpCommand = '!cuiller-commands';
@@ -29,4 +31,4 @@ client.on('message', (msg: Message) => {
 });
 
 console.log("Starting");
-client.login('MzU2MDgzNDI0NDMzNTM3MDI0.DJWOFQ.CGcTApLhCyT0gzHYMGIPLPvu1Kk');
+client.login(__PUBLIC_KEY__);
