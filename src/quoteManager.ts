@@ -1,16 +1,14 @@
-import { Characters, characterExists, getCharacters } from './characters';
-
-
-const jsonReq = require.context("../quotes", false, /^\.\/.*\.json$/);
+import { characterExists, getCharacters } from './characters';
 
 export default class QuoteManager {
     
     loadedQuotes: {[key: string]: Array<string>} = {};
     
     constructor() {
-        getCharacters().forEach((charName: string) => {
+        getCharacters().forEach(async (charName: string) => {
             try {
-                const charQuotes = jsonReq(`./${charName}.json`) as Array<string>;
+                // const charQuotes = jsonReq(`./${charName}.json`) as Array<string>;
+                const charQuotes = await import(`../quotes/${charName}.json`);
                 this.loadedQuotes[charName] = charQuotes;
             } catch {
                 console.log(`Couldn't load file ${charName}.json`);

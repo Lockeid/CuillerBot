@@ -6,7 +6,7 @@ A Kaamelott discord bot for random quotes.
 
 ### Dev
 
-Use `npm run dev` to use the dev webpack config which will create a bundle in the dist directory and watch for modifications. Nodemon will then reload the bot.
+Use `npm run dev` to use the dev webpack config which will create a bundle in the dist directory and watch for modifications.
 
 ### Production
 

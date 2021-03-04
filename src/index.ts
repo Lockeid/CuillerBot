@@ -1,9 +1,10 @@
-import { Client, TextChannel, Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
 import { getCharacters } from './characters';
 import QuoteManager from './quoteManager';
+import config = require('../config.json');
+
 const client = new Client();
 
-declare var __PUBLIC_KEY__: string;
 
 let quoteManager: QuoteManager;
 
@@ -11,7 +12,7 @@ const helpCommand = '!cuiller-commands';
 
 client.on('ready', () => {
     quoteManager = new QuoteManager();
-    client.user.setGame(helpCommand);
+    client.user.setActivity(helpCommand);
     console.log('Ready!');
 });
   
@@ -31,4 +32,4 @@ client.on('message', (msg: Message) => {
 });
 
 console.log("Starting");
-client.login(__PUBLIC_KEY__);
+client.login(config.token);

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
+    "outDir": "./dist",
+    "sourceMap": false,
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es2017",
@@ -13,6 +13,7 @@
     ]
   },
   "include": [
-      "./src/**/*"
+      "./src/**/*.ts",
+      "./quotes/*.json",
   ],
 }

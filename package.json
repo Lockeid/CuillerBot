@@ -1,45 +1,42 @@
 {
   "name": "cuillerbot",
   "version": "1.0.0",
+  "license": "MIT",
+  "author": "lockeid",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "test": "tsc && ava",
-    "dist": "rimraf dist && webpack --colors",
-    "start": "npm run dist && node --expose-http2 dist/CuillerBot.js",
-    "dev": "webpack --config webpack.config.dev.js --watch --colors"
+    "dist": "rimraf dist && tsc --build tsconfig.prod.json",
+    "start": "npm run dist && node dist/src/index.js",
+    "dev": "nodemon"
   },
-  "author": "lockeid",
-  "license": "MIT",
   "ava": {
-    "files": [
-      "**/tests/*.js"
-    ],
-    "source": [
-      "**/*.{js,jsx}",
-      "!dist/**/*"
-    ],
     "concurrency": 5,
     "failFast": true,
     "failWithoutAssertions": false,
-    "powerAssert": false
+    "files": [
+      "**/tests/*.js"
+    ],
+    "powerAssert": false,
+    "source": [
+      "**/*.{js,jsx}",
+      "!dist/**/*"
+    ]
   },
   "dependencies": {
-    "@types/node": "^8.0.28",
-    "@types/webpack-env": "^1.13.1",
-    "ava": "^0.18.2",
-    "awesome-typescript-loader": "^3.1.2",
-    "discord.js": "^11.2.1",
-    "eslint": "^3.18.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "http2": "^3.3.6",
-    "nodemon": "^1.12.0",
-    "rimraf": "^2.6.1",
-    "source-map-loader": "^0.2.0",
-    "typescript": "^2.5.0",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2",
-    "webpack-shell-plugin": "^0.5.0"
+    "@types/ws": "^7.4.0",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.7"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "nodemon": "^2.0.7",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.2"
   }
 }
