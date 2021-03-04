@@ -7,8 +7,7 @@ export default class QuoteManager {
     constructor() {
         getCharacters().forEach(async (charName: string) => {
             try {
-                // const charQuotes = jsonReq(`./${charName}.json`) as Array<string>;
-                const charQuotes = await import(`../quotes/${charName}.json`);
+                const charQuotes = await import(`../quotes/${charName}.json`) as Array<string>;;
                 this.loadedQuotes[charName] = charQuotes;
             } catch {
                 console.log(`Couldn't load file ${charName}.json`);
